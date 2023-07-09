@@ -36,10 +36,12 @@ def listen_for_client(cs):
             # if we received a message, replace the <SEP> 
             # token with ": " for nice printing
             msg = msg.replace(separator_token, ": ")
+            print(msg)
         # iterate over all connected sockets
         for client_socket in client_sockets:
             # and send the message
             client_socket.send(msg.encode())
+            
 
 while True:
     # we keep listening for new connections all the time
