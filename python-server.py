@@ -30,13 +30,13 @@ def listen_for_client(cs):
         except Exception as e:
             # client no longer connected
             # remove it from the set
-            print(f"[!] Error: {e}")
+            #print(f"[!] Error: {e}")
             client_sockets.remove(cs)
+            continue
         else:
             # if we received a message, replace the <SEP> 
             # token with ": " for nice printing
             msg = msg.replace(separator_token, ": ")
-            print(msg)
         # iterate over all connected sockets
         for client_socket in client_sockets:
             # and send the message

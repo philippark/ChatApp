@@ -78,8 +78,6 @@ class Chat(tk.Frame):
 
         controller.bind("<Return>", self.send_message)
 
-        self.name = "bob"
-
         """
         Chat frame and label
         """
@@ -125,7 +123,8 @@ class Chat(tk.Frame):
 
 
         date_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-        to_send = f"[{date_now}] {NAME}{separator_token}{to_send}"
+        #to_send = f"[{date_now}] {NAME}{separator_token}{to_send}"
+        to_send = f"{NAME}{separator_token}{to_send}"
 
         self.s.send(to_send.encode())
 
@@ -148,6 +147,12 @@ class Chat(tk.Frame):
             self.txt_chat.insert('end', message + "\n")
             self.txt_chat.see("end")
             self.txt_chat.config(state="disabled")
+
+    def on_closing(self):
+        to_send = f"{NAME}{separator_token}" + " has left the chat"
+        self.s.send(to_send.encode())
+
+        
 
 
 if __name__ == "__main__":
